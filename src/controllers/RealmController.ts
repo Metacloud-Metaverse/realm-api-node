@@ -12,10 +12,8 @@ class RealmController {
             apiResponseHandler.send(req, res, "data", data, "Realm saved successfully")
         }
         catch (error) {
-            next(error);
-            const err = "Error"
             const message = "error saving an realm";
-            apiResponseHandler.sendError(req, res, "data", err, message)
+            apiResponseHandler.sendError(req, res, "data", null, message)
         }
     }
     static async saveRealmUser(req, res, next) {
@@ -25,10 +23,8 @@ class RealmController {
             apiResponseHandler.send(req, res, "data", data, "Realm assigned to User and saved successfully")
         }
         catch (error) {
-            next(error);
-            const err = "Error"
             const message = "error saving an realm-user";
-            apiResponseHandler.sendError(req, res, "data", err, message)
+            apiResponseHandler.sendError(req, res, "data", null, message)
         }
     }
     static async listRealm(req, res, next) {
@@ -37,13 +33,11 @@ class RealmController {
             if (Array.isArray(data) && data.length) {
                 apiResponseHandler.send(req, res, "data", data, "List all Realm data successfully")
             } else {
-                apiResponseHandler.send(req, res, "data", data, "No Data found ")
+                apiResponseHandler.send(req, res, "data", null, "No Data found ")
             }
         } catch (error) {
-                next(error);
-                const err = "error"
                 const message = "error fetching realm";
-                apiResponseHandler.sendError(req, res, "data", err, message)
+                apiResponseHandler.sendError(req, res, "data", null, message)
             }
         }
     static async fetchRealmById(req, res, next) {
@@ -51,18 +45,16 @@ class RealmController {
             const realm_id = req.params.id
             let isRealmExist = await RealmController.realmExist(realm_id)
             if (!isRealmExist) {
-                const err = "Error"
+
                 const message = "Realm not available with given id";
-                apiResponseHandler.sendError(req, res, "data", err, message)
+                apiResponseHandler.sendError(req, res, "data", null, message)
             } else {
                 const data = isRealmExist
                 apiResponseHandler.send(req, res, "data", data, "Realm fetched successfully")
             }
         } catch (error) {
-            next(error);
-            const err = "error"
             const message = "error fetching realm";
-            apiResponseHandler.sendError(req, res, "data", err, message)
+            apiResponseHandler.sendError(req, res, "data", null, message)
         }
     }
     static async listRealmUser(req, res, next) {
@@ -74,10 +66,8 @@ class RealmController {
                 apiResponseHandler.send(req, res, "data", data, "No Data found ")
             }
         } catch (error) {
-            next(error);
-            const err = "error"
             const message = "error fetching realm";
-            apiResponseHandler.sendError(req, res, "data", err, message)
+            apiResponseHandler.sendError(req, res, "data", null, message)
         }
     }
     static async realmExist(id) {
