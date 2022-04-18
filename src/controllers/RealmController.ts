@@ -5,7 +5,7 @@ const userModel = db.User;
 const apiResponseHandler = require('../helper/ApiResponse.ts')
 
 class RealmController {
-    static async saveRealm(req, res, next) {
+    static async saveRealm(req: any, res: any, next: any) {
         try {
             const data = req.body;
             await realmModel.create(data);
@@ -16,7 +16,7 @@ class RealmController {
             apiResponseHandler.sendError(req, res, "data", null, message)
         }
     }
-    static async saveRealmUser(req, res, next) {
+    static async saveRealmUser(req: any, res: any, next: any) {
         try {
             const data = req.body;
             await realmUserModel.create(data);
@@ -27,7 +27,7 @@ class RealmController {
             apiResponseHandler.sendError(req, res, "data", null, message)
         }
     }
-    static async listRealm(req, res, next) {
+    static async listRealm(req: any, res: any, next: any) {
         try {
             const data = await realmModel.findAll();
             if (Array.isArray(data) && data.length) {
@@ -40,7 +40,7 @@ class RealmController {
                 apiResponseHandler.sendError(req, res, "data", null, message)
             }
         }
-    static async fetchRealmById(req, res, next) {
+    static async fetchRealmById(req: any, res: any, next: any) {
         try {
             const realm_id = req.params.id
             let isRealmExist = await RealmController.realmExist(realm_id)
@@ -57,7 +57,7 @@ class RealmController {
             apiResponseHandler.sendError(req, res, "data", null, message)
         }
     }
-    static async listRealmUser(req, res, next) {
+    static async listRealmUser(req: any, res: any, next: any) {
         try {
             const data = await realmUserModel.findAll();
             if (Array.isArray(data) && data.length) {
@@ -70,7 +70,7 @@ class RealmController {
             apiResponseHandler.sendError(req, res, "data", null, message)
         }
     }
-    static async realmExist(id) {
+    static async realmExist(id: number) {
         return realmModel.findOne({ where: { id: id } })
     }
 }
