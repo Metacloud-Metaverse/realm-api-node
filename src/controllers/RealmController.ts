@@ -36,10 +36,10 @@ class RealmController {
                 apiResponseHandler.send(req, res, "data", null, "No Data found ")
             }
         } catch (error) {
-                const message = "error fetching realm";
-                apiResponseHandler.sendError(req, res, "data", null, message)
-            }
+            const message = "error fetching realm";
+            apiResponseHandler.sendError(req, res, "data", null, message)
         }
+    }
     static async fetchRealmById(req, res, next) {
         try {
             const realm_id = req.params.id
